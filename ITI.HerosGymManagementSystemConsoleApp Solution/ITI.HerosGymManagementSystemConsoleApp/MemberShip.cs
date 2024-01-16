@@ -21,7 +21,6 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         #endregion
 
         #region Methods
-
         public static void ExcutingMemberShipModelOptions(SqlConnection connection, int UserId)
         {
             #region Display MemberShips Options To The User
@@ -142,12 +141,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             query = $"select COUNT(m.Id) [Number Of Members]\r\nfrom Members m, Memberships ms\r\nwhere ms.Id = m.Membership_Id and m.IsDeleted = 'f' and ms.Name = '{input}'";
 
             SqlCommand command = new SqlCommand(query, connection);
-
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                reader.Read();
-                MembersInMembershipCount = reader.GetInt32(0);
-            }
+            object result = command.ExecuteScalar();
+            MembersInMembershipCount = Convert.ToInt32(result);
 
             if (MembersInMembershipCount > 0)
             {
