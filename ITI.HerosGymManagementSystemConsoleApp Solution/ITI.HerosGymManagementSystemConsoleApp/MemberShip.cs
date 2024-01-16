@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Xml.Linq;
 
 namespace ITI.HerosGymManagementSystemConsoleApp
@@ -25,8 +28,12 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             int option;
 
+
             Console.WriteLine("Choose One Option..");
             Console.WriteLine("[1] Create a new Membership.");
+            Console.WriteLine("[2] Read All Memberships.");
+            Console.WriteLine("[3] Delete a specific Membership.");
+            Console.WriteLine("[4] Read All Deleted Memberships.");
 
             int.TryParse(Console.ReadLine(), out option);
 
@@ -35,9 +42,43 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             switch (option)
             {
                 case 1:
-                    MemberShip.CreateMemberShip(UserId, connection);
+                    CreateMemberShip(UserId, connection);
+                    ExcutingMemberShipModelOptions(connection, UserId);
+                    break;
+                case 2:
+                    GetAllMemberShips(connection);
+                    ExcutingMemberShipModelOptions(connection, UserId);
+                    break;
+                case 3:
+                    DeleteSpecificMembership(connection);
+                    ExcutingMemberShipModelOptions(connection, UserId);
+                    break;
+                case 4:
+                    GetDeletedMemberships(connection);
+                    ExcutingMemberShipModelOptions(connection, UserId);
+                    break;
+                default:
+                    Console.WriteLine("Enter a valid option..");
+                    ExcutingMemberShipModelOptions(connection, UserId);
                     break;
             }
+        }
+
+        public static void GetAllMemberShips(SqlConnection connection)
+        {
+            // Dispaly all info about all memberships
+            string query = "select * from GetAllMemberShipsData";
+
+            DataTable dataTable = new DataTable();
+
+            using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+            {
+                adapter.Fill(dataTable);
+            }
+
+            Helper.PrintDataTable(dataTable);
+
+            Console.WriteLine("_____________________________");
         }
 
         public static void CreateMemberShip(int User_Id, SqlConnection connection)
@@ -55,7 +96,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             } while (name is null | name == "");
 
 
-            do {
+            do
+            {
                 Console.Write("Enter the Amount: ");
                 Flag = int.TryParse(Console.ReadLine(), out Holder);
             } while (Holder <= 0 | !Flag);
@@ -78,8 +120,86 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             else
                 Console.WriteLine($"{name} not be added.");
 
+            Console.WriteLine("_____________________________");
+
         }
 
+        public static void DeleteSpecificMembership(SqlConnection connection)
+        {
+            string? input;
+            string query;
+            int MembersInMembershipCount;
+            Console.WriteLine("Choose a membership to delete..");
+
+            GetAllMemberShips(connection);
+
+            do
+            {
+                Console.Write("Enter the Name : ");
+                input = Console.ReadLine();
+            } while (string.IsNullOrEmpty(input));
+
+            query = $"select COUNT(m.Id) [Number Of Members]\r\nfrom Members m, Memberships ms\r\nwhere ms.Id = m.Membership_Id and m.IsDeleted = 'f' and ms.Name = '{input}'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                reader.Read();
+                MembersInMembershipCount = reader.GetInt32(0);
+            }
+
+            if (MembersInMembershipCount > 0)
+            {
+                Console.WriteLine("This membership has already members..");
+                return;
+            }
+            else
+            {
+                string deleteQuery = $"update Memberships\r\nset IsDeleted = 't'\r\nwhere Name = '{input}'";
+                command = new SqlCommand(deleteQuery, connection);
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                    Console.WriteLine($"{input} updated successfully.");
+                else
+                    Console.WriteLine($"{input} not be found.");
+
+                Console.WriteLine("_____________________________");
+            }
+
+
+
+
+
+
+            Console.WriteLine("_____________________________");
+        }
+
+        public static void GetDeletedMemberships(SqlConnection connection)
+        {
+            // GET all deleted Memberships
+            string query = $"select * from GetAllDeletedMemberShipsData";
+
+            DataTable dataTable = new DataTable();
+
+            using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+            {
+                adapter.Fill(dataTable);
+            }
+
+            Helper.PrintDataTable(dataTable);
+
+            Console.WriteLine("_____________________________");
+        }
         #endregion
+
+
+
+
+
+
     }
+
 }
+

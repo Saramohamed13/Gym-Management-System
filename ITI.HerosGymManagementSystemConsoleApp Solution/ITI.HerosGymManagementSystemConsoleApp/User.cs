@@ -39,7 +39,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                     while (reader.Read())
                         if (name == reader.GetString(1) && password == reader.GetString(2))
                         {
-                            Console.WriteLine($"\nWelcome back ya {reader.GetString(1)}");
+                            Console.Clear();
+                            Console.WriteLine($"Welcome back ya {reader.GetString(1)}");
+                            Console.WriteLine("------------------------\n");
                             return reader.GetInt32(0);
                         }
                     return -1;

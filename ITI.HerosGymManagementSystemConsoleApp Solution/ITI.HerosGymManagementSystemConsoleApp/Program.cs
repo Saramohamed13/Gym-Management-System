@@ -40,7 +40,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             }
             finally { 
                 if(connection.State == System.Data.ConnectionState.Open)
-                    connection.Close(); 
+                    connection.Close();
             }
         }
     }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,5 +36,25 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             return password;
         }
+        public static void PrintDataTable(DataTable dataTable)
+        {
+
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                Console.Write($"{column.ColumnName,-20}");
+            }
+            Console.WriteLine("\n");
+
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                foreach (var item in row.ItemArray)
+                {
+                    Console.Write($"{item,-20}");
+                }
+                Console.WriteLine();
+            }
+        }
+
     }
 }
