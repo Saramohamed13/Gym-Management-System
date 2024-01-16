@@ -22,11 +22,20 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 name = Console.ReadLine();
             } while (name is null || name == "");
 
-            do
-            {
-                Console.Write("Enter the User Password: ");
-                password = Console.ReadLine();
-            } while (password is null || password == "");
+
+
+
+
+            //do
+            //{
+            //    Console.Write("Enter the User Password: ");
+            //    password = Console.ReadLine();
+            //} while (password is null || password == "");
+
+
+            password = Helper.GetHiddenInput();
+
+
 
             string command = $"select Id, Name, Password from Users where IsDeleted = 'f'";
 
@@ -37,13 +46,11 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 if (reader.HasRows)
                 {
                     while (reader.Read())
-                    {
                         if (name == reader.GetString(1) && password == reader.GetString(2))
                         {
-                            Console.WriteLine($"Welcome back ya {reader.GetString(1)}");
+                            Console.WriteLine($"\nWelcome back ya {reader.GetString(1)}");
                             return reader.GetInt32(0);
                         }
-                    }
                     return -1;
                 }
                 else

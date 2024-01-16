@@ -18,7 +18,6 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         private static char isDeleted = 'f';
         #endregion
 
-
         #region Methods
 
         public static void CreateMemberShip(int User_Id, SqlConnection connection)
@@ -60,9 +59,6 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 Console.WriteLine($"{name} not be added.");
 
         }
-
-
-
 
         #endregion
     }

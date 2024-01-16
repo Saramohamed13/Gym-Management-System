@@ -14,6 +14,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             {
                 connection.Open();
 
+                // Ask the User for accessing
                 int UserId = User.UserCheck(connection);
 
                 if (UserId < 0)
