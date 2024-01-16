@@ -13,26 +13,17 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         {
             // Check for user access and return its id if exist , not exist is -1
 
-            string name;
+            string? name;
             string password;
 
             do
             {
                 Console.Write("Enter the User Name: ");
                 name = Console.ReadLine();
-            } while (name is null || name == "");
+            } while (string.IsNullOrEmpty(name));
 
 
-
-
-
-            //do
-            //{
-            //    Console.Write("Enter the User Password: ");
-            //    password = Console.ReadLine();
-            //} while (password is null || password == "");
-
-
+            // Encode Input Password
             password = Helper.GetHiddenInput();
 
 

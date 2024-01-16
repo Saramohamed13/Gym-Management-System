@@ -14,13 +14,21 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             {
                 connection.Open();
 
-                // Ask the User for accessing
+                #region Ask User For Accessing
+
                 int UserId = User.UserCheck(connection);
 
                 if (UserId < 0)
-                    throw new ArgumentException("Wrong!!!!!!!");
+                    throw new ArgumentException("\nWrong!!!!!!!");
 
-                MemberShip.CreateMemberShip(UserId, connection);
+                #endregion
+
+                #region MemberShip Model
+
+                MemberShip.ExcutingMemberShipModelOptions(connection, UserId);
+
+                #endregion
+
             }
             catch (ArgumentException ex)
             {

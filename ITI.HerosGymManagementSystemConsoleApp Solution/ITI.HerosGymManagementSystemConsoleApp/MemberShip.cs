@@ -11,14 +11,34 @@ namespace ITI.HerosGymManagementSystemConsoleApp
     internal static class MemberShip
     {
         #region Fields
-        private static int id;
-        private static string name;
+        private static string? name;
         private static int amount;
         private static int period;
         private static char isDeleted = 'f';
         #endregion
 
         #region Methods
+
+        public static void ExcutingMemberShipModelOptions(SqlConnection connection, int UserId)
+        {
+            #region Display MemberShips Options To The User
+
+            int option;
+
+            Console.WriteLine("Choose One Option..");
+            Console.WriteLine("[1] Create a new Membership.");
+
+            int.TryParse(Console.ReadLine(), out option);
+
+            #endregion
+
+            switch (option)
+            {
+                case 1:
+                    MemberShip.CreateMemberShip(UserId, connection);
+                    break;
+            }
+        }
 
         public static void CreateMemberShip(int User_Id, SqlConnection connection)
         {
