@@ -55,6 +55,42 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 Console.WriteLine();
             }
         }
+        public static void GetUserTravelOnApp(SqlConnection connection, int UserId)
+        {
+            int option;
+            Console.WriteLine("[1] Members\n[2] Coaches\n[3] Memberships\n[4] Programs\n[5] Payments\n[6] Users\n[7] Exist..");
+
+            do
+            {
+                Console.WriteLine("Choose One Option:");
+            } while (!int.TryParse(Console.ReadLine(), out option));
+
+            Console.Clear();
+
+            switch (option)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    MemberShip.ExcutingMemberShipModelOptions(connection, UserId);
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    User.ExcutingUserModelOptions(connection, UserId);
+                    break;
+                case 7:
+                    Environment.Exit(0);
+                    break;
+                default:
+                    break;
+
+            }
+        }
 
     }
 }

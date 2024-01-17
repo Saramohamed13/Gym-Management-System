@@ -23,11 +23,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
                 #endregion
 
-                #region MemberShip Model
-
-                MemberShip.ExcutingMemberShipModelOptions(connection, UserId);
-
-                #endregion
+                // The User Travel On the Application..
+                Helper.GetUserTravelOnApp(connection, UserId);
 
             }
             catch (ArgumentException ex)

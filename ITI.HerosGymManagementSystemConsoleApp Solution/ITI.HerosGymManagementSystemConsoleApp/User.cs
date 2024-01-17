@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ITI.HerosGymManagementSystemConsoleApp
 {
@@ -25,8 +27,6 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             // Encode Input Password
             password = Helper.GetHiddenInput();
-
-
 
             string command = $"select Id, Name, Password from Users where IsDeleted = 'f'";
 
@@ -50,19 +50,85 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                     return -1;
             }
 
+        }
+        public static void ExcutingUserModelOptions(SqlConnection connection, int UserId)
+        {
+            #region Display Users Options To The User
 
+            int option;
 
+            Console.WriteLine("Choose One Option..");
+            Console.WriteLine("[1] Show all users.");
+            Console.WriteLine("[2] Edit a specific user.");
+            Console.WriteLine("[3] Return..");
 
+            int.TryParse(Console.ReadLine(), out option);
 
+            Console.Clear();
 
+            #endregion
 
+            switch (option)
+            {
+                case 1:
+                    ShowAllUsers(connection, UserId);
+                    break;
+                case 2:
+                    EditASpecificUser(connection, UserId);
+                    break;
+                case 3:
+                    Helper.GetUserTravelOnApp(connection, UserId);
+                    break;
+                default:
+                    Console.WriteLine("Enter a valid option..");
+                    ExcutingUserModelOptions(connection, UserId);
+                    break;
+            }
+        }
+        public static void ShowAllUsers(SqlConnection connection, int UserId)
+        {
+            Console.Clear();
+            // Dispaly all info about all users
+            string query = $"select Name[UserName] from Users where IsDeleted='f'";
 
+            DataTable dataTable = new DataTable();
+
+            using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+            {
+                adapter.Fill(dataTable);
+            }
+
+            Helper.PrintDataTable(dataTable);
+
+            Console.WriteLine("_____________________________");
+            ExcutingUserModelOptions(connection, UserId);
+        }
+        public static void EditASpecificUser(SqlConnection connection, int UserId)
+        {
+            string? NewName;
+            string NewPassword;
+            Console.Write("Enter The New Name: ");
+            NewName = Console.ReadLine();
+            NewPassword = Helper.GetHiddenInput();
+
+            string query = $"update Users set Name='{NewName}', Password='{NewPassword}' where Id = {UserId}";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            int rowsAffected = command.ExecuteNonQuery();
+
+            if (rowsAffected > 0)
+                Console.WriteLine($"\n{NewName} updated successfully.");
+            else
+                Console.WriteLine($"\n{NewName} not be updated.");
+
+            Console.WriteLine("_____________________________");
+            ExcutingUserModelOptions(connection, UserId);
 
 
 
 
         }
-
 
     }
 }
