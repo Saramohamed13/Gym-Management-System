@@ -48,6 +48,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                     break;
                 case 2:
                     GetAllMemberShips(connection, UserId);
+                    ExcutingMemberShipModelOptions(connection, UserId);
                     break;
                 case 3:
                     DeleteSpecificMembership(connection, UserId);
@@ -82,6 +83,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             Helper.PrintDataTable(dataTable);
 
             Console.WriteLine("_____________________________");
+            
+
         }
 
         public static void CreateMemberShip(SqlConnection connection, int UserId)
@@ -127,6 +130,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             Console.WriteLine("_____________________________");
             ExcutingMemberShipModelOptions(connection, UserId);
 
+
         }
 
         public static void DeleteSpecificMembership(SqlConnection connection, int UserId)
@@ -156,6 +160,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             if (MembersInMembershipCount > 0)
             {
                 Console.WriteLine("This membership has already members..");
+                ExcutingMemberShipModelOptions(connection, UserId);
                 return;
             }
             else
@@ -172,8 +177,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 Console.WriteLine("_____________________________");
                 ExcutingMemberShipModelOptions(connection, UserId);
             }
-
             Console.WriteLine("_____________________________");
+            
         }
 
         public static void GetDeletedMemberships(SqlConnection connection, int UserId)
