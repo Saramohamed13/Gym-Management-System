@@ -96,12 +96,11 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             Console.Clear();
 
-            do
+            if (CheckIfMemberShipIsExisted(connection) is null)
             {
-                Console.Write("Enter the Name: ");
-                name = Console.ReadLine();
-            } while (name is null | name == "");
-
+                ExcutingMemberShipModelOptions(connection, UserId);
+                return;
+            }
 
             do
             {
@@ -199,6 +198,31 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             Console.WriteLine("_____________________________");
             ExcutingMemberShipModelOptions(connection, UserId);
+        }
+
+        public static string? CheckIfMemberShipIsExisted(SqlConnection connection)
+        {
+
+            do
+            {
+                Console.Write("Enter the Name: ");
+                name = Console.ReadLine();
+            } while (name is null | name == "");
+
+            string query = $"select *\r\nfrom Memberships\r\nwhere IsDeleted = 'f' and Name = '{name}'";
+            SqlCommand command = new SqlCommand(query, connection);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    if (reader.GetString(1)?.ToLower().Trim() == name?.ToLower().Trim())
+                    {
+                        Console.WriteLine("There is already membership with this name..");
+                        return null;
+                    }
+                }
+                return name;
+            }
         }
         
         #endregion
