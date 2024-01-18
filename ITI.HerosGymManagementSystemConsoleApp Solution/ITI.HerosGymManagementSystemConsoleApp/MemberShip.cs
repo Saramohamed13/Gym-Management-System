@@ -17,29 +17,14 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         private static string? name;
         private static int amount;
         private static int period;
-        private static char isDeleted = 'f';
         #endregion
 
         #region Methods
 
         public static void ExcutingMemberShipModelOptions(SqlConnection connection, int UserId)
         {
-            #region Display MemberShips Options To The User
 
-            int option;
-
-            Console.WriteLine("Choose One Option..");
-            Console.WriteLine("[1] Create a new Membership.");
-            Console.WriteLine("[2] Read All Memberships.");
-            Console.WriteLine("[3] Delete a specific Membership.");
-            Console.WriteLine("[4] Read All Deleted Memberships.");
-            Console.WriteLine("[5] Return..");
-
-            int.TryParse(Console.ReadLine(), out option);
-
-            Console.Clear();
-
-            #endregion
+            int option = Helper.DisplayMemberShipOptionsToUser();
 
             switch (option)
             {
@@ -82,8 +67,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             Helper.PrintDataTable(dataTable);
 
-            Console.WriteLine("_____________________________");
-            
+            Console.WriteLine("_____________________________");  
 
         }
 
@@ -122,9 +106,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             int rowsAffected = command.ExecuteNonQuery();
 
             if (rowsAffected > 0)
-                Console.WriteLine($"{name} added successfully.");
+                Console.WriteLine($"'{name}' added successfully.");
             else
-                Console.WriteLine($"{name} not be added.");
+                Console.WriteLine($"'{name}' not be added.");
 
             Console.WriteLine("_____________________________");
             ExcutingMemberShipModelOptions(connection, UserId);
@@ -158,7 +142,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             if (MembersInMembershipCount > 0)
             {
-                Console.WriteLine("This membership has already members..");
+                Console.WriteLine("This membership has already members..\n");
                 ExcutingMemberShipModelOptions(connection, UserId);
                 return;
             }
@@ -169,9 +153,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 int rowsAffected = command.ExecuteNonQuery();
 
                 if (rowsAffected > 0)
-                    Console.WriteLine($"{input} deleted successfully.");
+                    Console.WriteLine($"'{input}' deleted successfully.");
                 else
-                    Console.WriteLine($"{input} not be found.");
+                    Console.WriteLine($"'{input}' not be found.");
 
                 Console.WriteLine("_____________________________");
                 ExcutingMemberShipModelOptions(connection, UserId);

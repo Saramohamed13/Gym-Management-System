@@ -53,20 +53,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         }
         public static void ExcutingUserModelOptions(SqlConnection connection, int UserId)
         {
-            #region Display Users Options To The User
-
-            int option;
-
-            Console.WriteLine("Choose One Option..");
-            Console.WriteLine("[1] Show all users.");
-            Console.WriteLine("[2] Edit a specific user.");
-            Console.WriteLine("[3] Return..");
-
-            int.TryParse(Console.ReadLine(), out option);
-
-            Console.Clear();
-
-            #endregion
+            int option = Helper.DisplayUsersOptionsToUser();
 
             switch (option)
             {
@@ -118,9 +105,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             int rowsAffected = command.ExecuteNonQuery();
 
             if (rowsAffected > 0)
-                Console.WriteLine($"\n{NewName} updated successfully.");
+                Console.WriteLine($"\n'{NewName}' updated successfully.");
             else
-                Console.WriteLine($"\n{NewName} not be updated.");
+                Console.WriteLine($"\n'{NewName}' not be updated.");
 
             Console.WriteLine("_____________________________");
             ExcutingUserModelOptions(connection, UserId);

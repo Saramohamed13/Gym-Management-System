@@ -91,6 +91,38 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             }
         }
+        public static int DisplayMemberShipOptionsToUser()
+        {
+            int option;
+
+            Console.WriteLine("Choose One Option..");
+            Console.WriteLine("[1] Create a new Membership.");
+            Console.WriteLine("[2] Read All Memberships.");
+            Console.WriteLine("[3] Delete a specific Membership.");
+            Console.WriteLine("[4] Read All Deleted Memberships.");
+            Console.WriteLine("[5] Return..");
+
+            int.TryParse(Console.ReadLine(), out option);
+
+            Console.Clear();
+
+            return option;
+            
+        }
+        public static int DisplayUsersOptionsToUser()
+        {
+            int option;
+
+            Console.WriteLine("Choose One Option..");
+            Console.WriteLine("[1] Show all users.");
+            Console.WriteLine("[2] Edit a specific user.");
+            Console.WriteLine("[3] Return..");
+
+            int.TryParse(Console.ReadLine(), out option);
+
+            Console.Clear();
+            return option;
+        }
 
     }
 }
