@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ITI.HerosGymManagementSystemConsoleApp
 {
     internal static class Helper
     {
+        static void CenterText(string text)
+        {
+            int screenWidth = Console.WindowWidth;
+            int stringWidth = text.Length;
+            int leftPadding = (screenWidth - stringWidth) / 2;
+            Console.SetCursorPosition(leftPadding, Console.CursorTop);
+            Console.WriteLine(text);
+        }
         public static string GetHiddenInput()
         {
 
-            Console.Write("Enter the User Password: ");
-
+            Console.Write("\n                                              Enter the User Password: ");
             string password = "";
             ConsoleKeyInfo key;
 
@@ -58,7 +64,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         public static void GetUserTravelOnApp(SqlConnection connection, int UserId)
         {
             int option;
-            Console.WriteLine("[1] Members\n[2] Coaches\n[3] Memberships\n[4] Programs\n[5] Payments\n[6] Users\n[7] Exist..");
+            CenterText("[1] Members\n[2] Coaches\n[3] Memberships\n[4] Programs\n[5] Payments\n[6] Users\n[7] Exist..");
 
             do
             {
@@ -70,8 +76,13 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             switch (option)
             {
                 case 1:
+
                     break;
                 case 2:
+                    {
+                        Coaches coaches = new Coaches(connection, UserId);
+                        coaches.ShowUserMenu();
+                    }
                     break;
                 case 3:
                     MemberShip.ExcutingMemberShipModelOptions(connection, UserId);
@@ -107,7 +118,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             Console.Clear();
 
             return option;
-            
+
         }
         public static int DisplayUsersOptionsToUser()
         {
@@ -124,5 +135,23 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             return option;
         }
 
+        public static bool IsValidEmail(string email)
+        {
+
+
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            Regex regex = new Regex(pattern);
+
+            return regex.IsMatch(email);
+        }
+        public static bool IsValidName(string name)
+        {
+
+
+            string pattern = @"^[a-zA-Z\s'-]+$";
+            Regex regex = new Regex(pattern);
+
+            return regex.IsMatch(name);
+        }
     }
 }

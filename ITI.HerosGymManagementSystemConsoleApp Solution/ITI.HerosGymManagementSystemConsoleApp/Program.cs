@@ -8,6 +8,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
     {
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Black;
             string ConnectionString = "Data Source=.;Initial Catalog=Heros_GYM; Trusted_Connection=True";
             SqlConnection connection = new SqlConnection(ConnectionString);
             try
@@ -19,7 +21,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 int UserId = User.UserCheck(connection);
 
                 if (UserId < 0)
-                    throw new ArgumentException("\nWrong!!!!!!!");
+                    throw new ArgumentException("\n \n                                              Wrong!!!!!!!");
 
                 #endregion
 
@@ -35,8 +37,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-            finally { 
-                if(connection.State == System.Data.ConnectionState.Open)
+            finally
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
                     connection.Close();
             }
         }
