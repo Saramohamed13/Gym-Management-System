@@ -124,6 +124,25 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             return option;
 
         }
+        public static int DisplayProgramsOptionsToUser()
+        {
+            int option;
+
+            Console.WriteLine("Choose One Option..");
+            Console.WriteLine("[1] Create a new Program.");
+            Console.WriteLine("[2] Update a specific program.");
+            Console.WriteLine("[3] Read all programs.");
+            Console.WriteLine("[4] Delete a specific program.");
+            Console.WriteLine("[5] Read All Deleted programs.");
+            Console.WriteLine("[5] Return..");
+
+            int.TryParse(Console.ReadLine(), out option);
+
+            Console.Clear();
+
+            return option;
+
+        }
         public static int DisplayUsersOptionsToUser()
         {
             int option;
@@ -138,7 +157,6 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             Console.Clear();
             return option;
         }
-
         public static bool IsValidEmail(string email)
         {
 

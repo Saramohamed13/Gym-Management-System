@@ -32,16 +32,19 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                     CreateMemberShip(connection, UserId);
                     break;
                 case 2:
+                    UpdateSpecificMemberShip(connection, UserId);
+                    break;
+                case 3:
                     GetAllMemberShips(connection, UserId);
                     ExcutingMemberShipModelOptions(connection, UserId);
                     break;
-                case 3:
+                case 4:
                     DeleteSpecificMembership(connection, UserId);
                     break;
-                case 4:
+                case 5:
                     GetDeletedMemberships(connection, UserId);
                     break;
-                case 5:
+                case 6:
                     Helper.GetUserTravelOnApp(connection, UserId);
                     break;
                 default:
@@ -51,8 +54,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             }
 
         }
-
-        public static void GetAllMemberShips(SqlConnection connection,int UserId)
+        public static void GetAllMemberShips(SqlConnection connection, int UserId)
         {
             Console.Clear();
             // Dispaly all info about all memberships
@@ -67,10 +69,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             Helper.PrintDataTable(dataTable);
 
-            Console.WriteLine("_____________________________");  
+            Console.WriteLine("_____________________________");
 
         }
-
         public static void CreateMemberShip(SqlConnection connection, int UserId)
         {
             // Creates a new membership
@@ -115,7 +116,52 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
 
         }
+        public static void UpdateSpecificMemberShip(SqlConnection connection, int UserId)
+        {
+            bool Flag;
+            int Holder;
 
+            Console.Clear();
+
+            GetAllMemberShips(connection, UserId);
+
+            if (CheckMembershipNameToUpdate(connection) is null)
+            {
+                Console.WriteLine("There is no membership with this name!!\n");
+                ExcutingMemberShipModelOptions(connection, UserId);
+                return;
+            }
+
+            do
+            {
+                Console.Write("Enter the Amount: ");
+                Flag = int.TryParse(Console.ReadLine(), out Holder);
+            } while (Holder <= 0 | !Flag);
+            amount = Holder;
+
+            do
+            {
+                Console.Write("Enter the Period[In Months]: ");
+                Flag = int.TryParse(Console.ReadLine(), out Holder);
+            } while (Holder <= 0 | !Flag);
+            period = Holder;
+
+
+            SqlCommand command = new SqlCommand($"update Memberships\r\nset Name = '{name}', Amount = {amount}, Period = {period}\r\nwhere Name = '{name}'", connection);
+
+
+            int rowsAffected = command.ExecuteNonQuery();
+
+            if (rowsAffected > 0)
+                Console.WriteLine($"'{name}' updated successfully.");
+            else
+                Console.WriteLine($"'{name}' not be updated.");
+
+            Console.WriteLine("_____________________________");
+            ExcutingMemberShipModelOptions(connection, UserId);
+
+
+        }
         public static void DeleteSpecificMembership(SqlConnection connection, int UserId)
         {
             string? input;
@@ -161,9 +207,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 ExcutingMemberShipModelOptions(connection, UserId);
             }
             Console.WriteLine("_____________________________");
-            
-        }
 
+        }
         public static void GetDeletedMemberships(SqlConnection connection, int UserId)
         {
             Console.Clear();
@@ -183,7 +228,6 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             Console.WriteLine("_____________________________");
             ExcutingMemberShipModelOptions(connection, UserId);
         }
-
         public static string? CheckIfMemberShipIsExisted(SqlConnection connection)
         {
 
@@ -208,7 +252,29 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 return name;
             }
         }
-        
+        public static string? CheckMembershipNameToUpdate(SqlConnection connection)
+        {
+            do
+            {
+                Console.Write("Enter the Name: ");
+                name = Console.ReadLine();
+            } while (name is null | name == "");
+
+            string query = $"select *\r\nfrom Memberships\r\nwhere IsDeleted = 'f' and Name = '{name}'";
+            SqlCommand command = new SqlCommand(query, connection);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    if (reader.GetString(1)?.ToLower().Trim() == name?.ToLower().Trim())
+                    {
+                        return name;
+                    }
+                }
+                return null;
+            }
+        }
+
         #endregion
 
     }

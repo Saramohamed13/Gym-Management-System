@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ITI.HerosGymManagementSystemConsoleApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba1713bf5bebb65bc94fb4fec9a25fc8051df0a2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1757ef6b1ae5f872e7a9bf74e97ea5cb56038758")]
 [assembly: System.Reflection.AssemblyProductAttribute("ITI.HerosGymManagementSystemConsoleApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ITI.HerosGymManagementSystemConsoleApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
