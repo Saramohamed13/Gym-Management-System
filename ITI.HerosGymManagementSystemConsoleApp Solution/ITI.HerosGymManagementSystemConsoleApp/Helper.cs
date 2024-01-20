@@ -9,14 +9,6 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 {
     internal static class Helper
     {
-        static void CenterText(string text)
-        {
-            int screenWidth = Console.WindowWidth;
-            int stringWidth = text.Length;
-            int leftPadding = (screenWidth - stringWidth) / 2;
-            Console.SetCursorPosition(leftPadding, Console.CursorTop);
-            Console.WriteLine(text);
-        }
         public static string GetHiddenInput()
         {
 
@@ -64,7 +56,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         public static void GetUserTravelOnApp(SqlConnection connection, int UserId)
         {
             int option;
-            CenterText("[1] Members\n[2] Coaches\n[3] Memberships\n[4] Programs\n[5] Payments\n[6] Users\n[7] Exist..");
+            Console.WriteLine("[1] Members\n[2] Coaches\n[3] Memberships\n[4] Programs\n[5] Payments\n[6] Users\n[7] Exist..");
 
             do
             {
@@ -112,10 +104,11 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             Console.WriteLine("Choose One Option..");
             Console.WriteLine("[1] Create a new Membership.");
-            Console.WriteLine("[2] Read All Memberships.");
-            Console.WriteLine("[3] Delete a specific Membership.");
-            Console.WriteLine("[4] Read All Deleted Memberships.");
-            Console.WriteLine("[5] Return..");
+            Console.WriteLine("[2] Update a specific Membership.");
+            Console.WriteLine("[3] Read All Memberships.");
+            Console.WriteLine("[4] Delete a specific Membership.");
+            Console.WriteLine("[5] Read All Deleted Memberships.");
+            Console.WriteLine("[6] Return..");
 
             int.TryParse(Console.ReadLine(), out option);
 
