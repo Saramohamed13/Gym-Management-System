@@ -197,12 +197,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             while (!int.TryParse(Console.ReadLine(), out coachId))
             {
                 Console.WriteLine("Invalid Coach ID. Please enter a valid integer.");
-
             }
             try
             {
-
-
                 string selectQuery = "SELECT C.*, CP.Phone, CA.Address " +
                                      "FROM Coaches C " +
                                      "JOIN Coach_Phones CP ON C.Id = CP.Id " +

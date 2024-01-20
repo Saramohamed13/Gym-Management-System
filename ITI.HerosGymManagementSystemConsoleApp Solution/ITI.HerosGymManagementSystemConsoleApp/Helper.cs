@@ -20,7 +20,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         public static string GetHiddenInput()
         {
 
-            Console.Write("\n                                              Enter the User Password: ");
+            Console.Write("\nEnter the User Password: ");
             string password = "";
             ConsoleKeyInfo key;
 
@@ -90,6 +90,10 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 case 4:
                     break;
                 case 5:
+                    {
+                        Payment payment =new Payment(connection, UserId);
+                        payment.ShowUserMenu();
+                    }
                     break;
                 case 6:
                     User.ExcutingUserModelOptions(connection, UserId);
