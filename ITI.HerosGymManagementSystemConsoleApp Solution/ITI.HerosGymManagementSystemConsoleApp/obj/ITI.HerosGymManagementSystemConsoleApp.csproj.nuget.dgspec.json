@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mosta\\Desktop\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj": {}
+    "D:\\__CurrentProjects__\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mosta\\Desktop\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj": {
+    "D:\\__CurrentProjects__\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mosta\\Desktop\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
+        "projectUniqueName": "D:\\__CurrentProjects__\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
         "projectName": "ITI.HerosGymManagementSystemConsoleApp",
-        "projectPath": "C:\\Users\\mosta\\Desktop\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
+        "projectPath": "D:\\__CurrentProjects__\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
         "packagesPath": "C:\\Users\\mosta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mosta\\Desktop\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\obj\\",
+        "outputPath": "D:\\__CurrentProjects__\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mosta\\AppData\\Roaming\\NuGet\\NuGet.Config",
