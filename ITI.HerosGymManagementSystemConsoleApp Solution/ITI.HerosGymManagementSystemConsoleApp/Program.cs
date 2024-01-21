@@ -23,7 +23,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 int UserId = User.UserCheck(connection);
 
                 if (UserId < 0)
-                    throw new ArgumentException("Wrong!!!!!!!");
+                    throw new ArgumentException("\nWrong!!!!!!!");
 
                 #endregion
 

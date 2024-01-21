@@ -13,6 +13,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 {
     internal static class MemberShip
     {
+        private static bool HeaderFlag = false;
 
         #region File Updates
 
@@ -24,11 +25,15 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             {
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
-                    writer.WriteLine($"UserName: {UserName}");
-                    writer.WriteLine($"DateTime: {DateTime.Now}");
-                    writer.WriteLine($"Old => Name: {Old.Name} | Amout: {Old.Amount} | Period: {Old.Period}");
-                    writer.WriteLine($"Updated => Name: {Updated.Name} | Amout: {Updated.Amount} | Period: {Updated.Period}");
-                    writer.WriteLine("----------------------------------------------------------------");
+                    if (HeaderFlag is false)
+                    {
+                        writer.WriteLine("|   Status   |    Name    | Amount |  Period   |        DateTime       |    User    |");
+                        writer.WriteLine("|------------|------------|--------|-----------|-----------------------|------------|");
+                        HeaderFlag = true;
+                    }
+                    writer.WriteLine($"| {"Old", -10} | {Old.Name, -10} | {Old.Amount,-6} | {Old.Period, -9} | {"", -21} | {"",-10} |");
+                    writer.WriteLine($"| {"Updated",-10} | {Updated.Name,-10} | {Updated.Amount,-6} | {Updated.Period,-9} | {DateTime.Now,-21} | {UserName,-10} |");
+                    writer.WriteLine("+------------+------------+--------+-----------+-----------------------+------------+");
                 }
             }
             catch (Exception ex)
@@ -289,7 +294,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 }
                 else
                 {
-                    Console.WriteLine($"There is no Membership called '{name}'");
+                    Console.WriteLine($"There is no Membership called '{name}'\n");
                     return null;
                 }
 
