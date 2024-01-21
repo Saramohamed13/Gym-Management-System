@@ -12,7 +12,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
     {
         private static string? name;
         private static string? description;
-        private static int salary;
+        private static decimal salary;
 
         public static void ExcutingProgramModelOptions(SqlConnection connection, int UserId)
         {
