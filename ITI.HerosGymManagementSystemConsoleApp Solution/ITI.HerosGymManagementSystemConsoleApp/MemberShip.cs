@@ -160,7 +160,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             do
             {
-                Console.Write("Enter the new Name: ");
+                Console.Write("Enter the New Name: ");
                 name = Console.ReadLine();
             } while (name is null | name == "");
 
@@ -282,8 +282,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 {
                     while (reader.Read())
                     {
-                        if (reader.GetString(1)?.ToLower().Trim() == name?.ToLower().Trim())
-                            return new RecordMemberShipUpdates(reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
+                        Console.WriteLine("There is already membership with this name..\n");
+                        return null;
                     }
                 }
                 else
