@@ -2,3 +2,12 @@ mostafa...
 Old => Name: plus | Amout: 250 | Period: 2
 Updated => Name: plus2 | Amout: 200 | Period: 1
 ----------------------------------------------------------------
+mostafa...
+Old => Name: plus2 | Amout: 200 | Period: 1
+Updated => Name: plus | Amout: 200 | Period: 2
+----------------------------------------------------------------
+UserName: mostafa
+DateTime: 1/21/2024 5:03:55 PM
+Old => Name: plus | Amout: 200 | Period: 2
+Updated => Name: updatedPlus | Amout: 250 | Period: 3
+----------------------------------------------------------------

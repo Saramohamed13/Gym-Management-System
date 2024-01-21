@@ -12,7 +12,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         public static string GetHiddenInput()
         {
 
-            Console.Write("\nEnter the User Password: ");
+            Console.Write("Enter the User Password: ");
             string password = "";
             ConsoleKeyInfo key;
 

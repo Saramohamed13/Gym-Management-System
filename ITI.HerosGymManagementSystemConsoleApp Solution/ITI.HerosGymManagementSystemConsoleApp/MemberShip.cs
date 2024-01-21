@@ -24,7 +24,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             {
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
-                    writer.WriteLine($"{UserName}...");
+                    writer.WriteLine($"UserName: {UserName}");
+                    writer.WriteLine($"DateTime: {DateTime.Now}");
                     writer.WriteLine($"Old => Name: {Old.Name} | Amout: {Old.Amount} | Period: {Old.Period}");
                     writer.WriteLine($"Updated => Name: {Updated.Name} | Amout: {Updated.Amount} | Period: {Updated.Period}");
                     writer.WriteLine("----------------------------------------------------------------");

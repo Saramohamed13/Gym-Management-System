@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\test\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
+      "projectUniqueName": "C:\\Users\\mosta\\Desktop\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
       "projectName": "ITI.HerosGymManagementSystemConsoleApp",
-      "projectPath": "D:\\test\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
+      "projectPath": "C:\\Users\\mosta\\Desktop\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
       "packagesPath": "C:\\Users\\mosta\\.nuget\\packages\\",
-      "outputPath": "D:\\test\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\obj\\",
+      "outputPath": "C:\\Users\\mosta\\Desktop\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mosta\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -532,5 +532,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\mosta\\Desktop\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
