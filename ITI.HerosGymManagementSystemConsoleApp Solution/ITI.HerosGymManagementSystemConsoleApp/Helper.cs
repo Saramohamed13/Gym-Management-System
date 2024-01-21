@@ -143,7 +143,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             Console.WriteLine("Choose One Option..");
             Console.WriteLine("[1] Show all users.");
-            Console.WriteLine("[2] Edit a specific user.");
+            Console.WriteLine("[2] Edit your info.");
             Console.WriteLine("[3] Return..");
 
             int.TryParse(Console.ReadLine(), out option);

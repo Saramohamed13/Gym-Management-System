@@ -112,8 +112,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             Console.Clear();
 
-            if (CheckIfMemberShipIsExisted(connection) is null)
+            if (CheckIfMemberShipIsExisted(connection) is RecordMemberShipUpdates)
             {
+                Console.WriteLine($"There is already a Membership called '{name}'\n");
                 ExcutingMemberShipModelOptions(connection, UserId);
                 return;
             }
@@ -160,6 +161,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             if (OldMemberShip is null)
             {
+                Console.WriteLine($"There is no Membership called '{name}'\n");
                 ExcutingMemberShipModelOptions(connection, UserId);
                 return;
             }
@@ -204,7 +206,6 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
 
         }
-
         public static void DeleteSpecificMembership(SqlConnection connection, int UserId)
         {
             string? input;
@@ -294,7 +295,6 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 }
                 else
                 {
-                    Console.WriteLine($"There is no Membership called '{name}'\n");
                     return null;
                 }
 
