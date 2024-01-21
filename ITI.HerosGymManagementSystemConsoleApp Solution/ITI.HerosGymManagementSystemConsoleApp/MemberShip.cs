@@ -134,6 +134,12 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             do
             {
+                Console.Write("Enter the New Name: ");
+                name = Console.ReadLine();
+            } while (name is null | name == "");
+
+            do
+            {
                 Console.Write("Enter the Amount: ");
                 Flag = int.TryParse(Console.ReadLine(), out Holder);
             } while (Holder <= 0 | !Flag);
@@ -245,7 +251,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 {
                     if (reader.GetString(1)?.ToLower().Trim() == name?.ToLower().Trim())
                     {
-                        Console.WriteLine("There is already membership with this name..");
+                        Console.WriteLine("There is already membership with this name..\n");
                         return null;
                     }
                 }
