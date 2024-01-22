@@ -3,8 +3,10 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 {
     public class Members
     {
+
         SqlConnection connection;
         int UserId;
+        #region methods
         public Members(SqlConnection _connection, int _UserId)
         {
             this.connection = _connection;
@@ -302,7 +304,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             }
 
         }
-
+        #endregion
     }
 
 }

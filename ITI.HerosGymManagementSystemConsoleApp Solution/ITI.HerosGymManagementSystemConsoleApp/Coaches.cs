@@ -21,10 +21,10 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 Console.WriteLine("2. Search Coach");
                 Console.WriteLine("3. Update Coach");
                 Console.WriteLine("4. Delete Coach");
-                Console.WriteLine("5. Exit");
+                Console.WriteLine("5. Return");
                 Console.Write("Enter the number of your choice: ");
                 string? choice = Console.ReadLine();
-
+                Console.Clear();
                 switch (choice)
                 {
                     case "1":
@@ -48,8 +48,13 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 }
             }
         }
+
+
         public void VaildUserInput(int Flag)
         {
+            /* Ask coach for his data 
+             * [ Name - Email - Program id - Phone - Id-->(update) - Address ] 
+             */
             string? name;
             string? email;
             int programId, userId, phone, coachId = 0;
@@ -116,6 +121,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         }
         public void AddCoach(string name, string email, int programId, int userId, int phone, string address)
         {
+
+            
             try
             {
 
@@ -153,8 +160,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Error: {e.Message}");
+                Console.WriteLine($"Enter vaild id ");
             }
+            Console.Clear();
             ShowUserMenu();
         }
 
@@ -185,6 +193,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             {
                 Console.WriteLine($"Error: {e.Message}");
             }
+            Console.Clear();
             ShowUserMenu();
 
 
@@ -192,6 +201,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
         public void SearchCoach()
         {
+            Console.Clear();
+            //search for coach by its id 
             int coachId;
             Console.Write("Enter Coach ID: ");
             while (!int.TryParse(Console.ReadLine(), out coachId))
@@ -216,7 +227,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 adapter.Fill(resultTable);
                 if (resultTable.Rows.Count > 0)
                 {
-                    Console.WriteLine($"Coach found - Name: {resultTable.Rows[0]["Name"]}, Email: {resultTable.Rows[0]["Email"]}, Phone: {resultTable.Rows[0]["Phone"]}, Address: {resultTable.Rows[0]["Address"]}");
+                    Console.WriteLine($"\n Coach found... \n Name: {resultTable.Rows[0]["Name"]}\t" +
+                        $" Email: {resultTable.Rows[0]["Email"]}\t Phone: {resultTable.Rows[0]["Phone"]}\t" +
+                        $" Address: {resultTable.Rows[0]["Address"]}\n");
                 }
                 else
                 {
@@ -227,7 +240,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Error: {e.Message}");
+                Console.WriteLine($"\nEnter vaild id \n");
             }
             ShowUserMenu();
 
@@ -236,6 +249,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
         public void UpdateCoach(int coachId, string newName, string newEmail, int newProgramId, int newUserId, int newPhone, string newAddress)
         {
+            // Update coaches data by know its id  
             try
             {
 
