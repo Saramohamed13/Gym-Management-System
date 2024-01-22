@@ -12,7 +12,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         public static string GetHiddenInput()
         {
 
-            Console.Write("\nEnter the User Password: ");
+            Console.Write("Enter the User Password: ");
             string password = "";
             ConsoleKeyInfo key;
 
@@ -83,6 +83,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                     MemberShip.ExcutingMemberShipModelOptions(connection, UserId);
                     break;
                 case 4:
+                    GymProgram.ExcutingProgramModelOptions(connection, UserId);
                     break;
                 case 5:
                     {
@@ -130,7 +131,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             Console.WriteLine("[3] Read all programs.");
             Console.WriteLine("[4] Delete a specific program.");
             Console.WriteLine("[5] Read All Deleted programs.");
-            Console.WriteLine("[5] Return..");
+            Console.WriteLine("[6] Return..");
 
             int.TryParse(Console.ReadLine(), out option);
 
@@ -145,7 +146,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             Console.WriteLine("Choose One Option..");
             Console.WriteLine("[1] Show all users.");
-            Console.WriteLine("[2] Edit a specific user.");
+            Console.WriteLine("[2] Edit your info.");
             Console.WriteLine("[3] Return..");
 
             int.TryParse(Console.ReadLine(), out option);
@@ -171,6 +172,12 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             return regex.IsMatch(name);
         }
+        public static string? GetUserName(SqlConnection connection, int UserId)
+        {
+            SqlCommand command = new SqlCommand($"select Name from Users where Id = {UserId}", connection);
+            return command.ExecuteScalar().ToString();
+        }
+
 
         public static bool IsValidPhoneNumber(string phoneNumber)
         {

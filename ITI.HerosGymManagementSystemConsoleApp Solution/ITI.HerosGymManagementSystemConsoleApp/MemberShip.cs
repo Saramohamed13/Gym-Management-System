@@ -13,6 +13,37 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 {
     internal static class MemberShip
     {
+        private static bool HeaderFlag = false;
+
+        #region File Updates
+
+        private static string filePath = "membership_updates.txt";
+        public static void LogUpdateToFile(RecordMemberShipUpdates Old, RecordMemberShipUpdates Updated, SqlConnection connection, int UserId)
+        {
+            string? UserName = Helper.GetUserName(connection, UserId);
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath, true))
+                {
+                    if (HeaderFlag is false)
+                    {
+                        writer.WriteLine("|   Status   |    Name    | Amount |  Period   |        DateTime       |    User    |");
+                        writer.WriteLine("|------------|------------|--------|-----------|-----------------------|------------|");
+                        HeaderFlag = true;
+                    }
+                    writer.WriteLine($"| {"Old", -10} | {Old.Name, -10} | {Old.Amount,-6} | {Old.Period, -9} | {"", -21} | {"",-10} |");
+                    writer.WriteLine($"| {"Updated",-10} | {Updated.Name,-10} | {Updated.Amount,-6} | {Updated.Period,-9} | {DateTime.Now,-21} | {UserName,-10} |");
+                    writer.WriteLine("+------------+------------+--------+-----------+-----------------------+------------+");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error logging update to file: {ex.Message}");
+            }
+        }
+
+        #endregion
+
         #region Fields
         private static string? name;
         private static int amount;
@@ -81,8 +112,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             Console.Clear();
 
-            if (CheckIfMemberShipIsExisted(connection) is null)
+            if (CheckIfMemberShipIsExisted(connection) is RecordMemberShipUpdates)
             {
+                Console.WriteLine($"There is already a Membership called '{name}'\n");
                 ExcutingMemberShipModelOptions(connection, UserId);
                 return;
             }
@@ -125,12 +157,20 @@ namespace ITI.HerosGymManagementSystemConsoleApp
 
             GetAllMemberShips(connection, UserId);
 
-            if (CheckMembershipNameToUpdate(connection) is null)
+            RecordMemberShipUpdates? OldMemberShip = CheckIfMemberShipIsExisted(connection);
+
+            if (OldMemberShip is null)
             {
-                Console.WriteLine("There is no membership with this name!!\n");
+                Console.WriteLine($"There is no Membership called '{name}'\n");
                 ExcutingMemberShipModelOptions(connection, UserId);
                 return;
             }
+
+            do
+            {
+                Console.Write("Enter the new Name: ");
+                name = Console.ReadLine();
+            } while (name is null | name == "");
 
             do
             {
@@ -147,10 +187,11 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             period = Holder;
 
 
-            SqlCommand command = new SqlCommand($"update Memberships\r\nset Name = '{name}', Amount = {amount}, Period = {period}\r\nwhere Name = '{name}'", connection);
-
+            SqlCommand command = new SqlCommand($"update Memberships\r\nset Name = '{name}', Amount = {amount}, Period = {period}\r\nwhere Name = '{OldMemberShip.Name}'", connection);
 
             int rowsAffected = command.ExecuteNonQuery();
+
+            RecordMemberShipUpdates? UpdatedMembership = GenerateNewMemberShip(name, connection);
 
             if (rowsAffected > 0)
                 Console.WriteLine($"'{name}' updated successfully.");
@@ -158,6 +199,9 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 Console.WriteLine($"'{name}' not be updated.");
 
             Console.WriteLine("_____________________________");
+
+            LogUpdateToFile(OldMemberShip, UpdatedMembership, connection, UserId);
+
             ExcutingMemberShipModelOptions(connection, UserId);
 
 
@@ -228,7 +272,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             Console.WriteLine("_____________________________");
             ExcutingMemberShipModelOptions(connection, UserId);
         }
-        public static string? CheckIfMemberShipIsExisted(SqlConnection connection)
+        public static RecordMemberShipUpdates? CheckIfMemberShipIsExisted(SqlConnection connection)
         {
 
             do
@@ -241,39 +285,35 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             SqlCommand command = new SqlCommand(query, connection);
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                while (reader.Read())
+                if (reader.HasRows)
                 {
-                    if (reader.GetString(1)?.ToLower().Trim() == name?.ToLower().Trim())
+                    while (reader.Read())
                     {
-                        Console.WriteLine("There is already membership with this name..");
-                        return null;
+                        if (reader.GetString(1)?.ToLower().Trim() == name?.ToLower().Trim())
+                            return new RecordMemberShipUpdates(reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
                     }
                 }
-                return name;
-            }
-        }
-        public static string? CheckMembershipNameToUpdate(SqlConnection connection)
-        {
-            do
-            {
-                Console.Write("Enter the Name: ");
-                name = Console.ReadLine();
-            } while (name is null | name == "");
+                else
+                {
+                    return null;
+                }
 
-            string query = $"select *\r\nfrom Memberships\r\nwhere IsDeleted = 'f' and Name = '{name}'";
-            SqlCommand command = new SqlCommand(query, connection);
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    if (reader.GetString(1)?.ToLower().Trim() == name?.ToLower().Trim())
-                    {
-                        return name;
-                    }
-                }
-                return null;
             }
+            return null;
         }
+        public static RecordMemberShipUpdates? GenerateNewMemberShip(string name, SqlConnection connection)
+        {
+            SqlCommand command2 = new SqlCommand($"select Name, Amount, Period from Memberships where Name = '{name}'", connection);
+
+            using (SqlDataReader reader = command2.ExecuteReader())
+            {
+                if (reader.HasRows)
+                    while (reader.Read())
+                        return new RecordMemberShipUpdates(reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2));
+            }
+            return null;
+        }
+
 
         #endregion
 
