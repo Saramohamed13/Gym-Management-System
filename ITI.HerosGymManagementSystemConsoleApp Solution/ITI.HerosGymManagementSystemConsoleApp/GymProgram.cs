@@ -163,7 +163,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         }
         public static void GetAllPrograms(SqlConnection connection, int UserId)
         {
-            Console.Clear();
+          //  Console.Clear();
 
             string query = "select * from GetAllProgramsData";
 

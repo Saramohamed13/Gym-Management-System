@@ -68,7 +68,10 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             switch (option)
             {
                 case 1:
-
+                    {
+                        Members members = new Members(connection, UserId);
+                        members.Options();
+                    }
                     break;
                 case 2:
                     {
@@ -167,6 +170,30 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             Regex regex = new Regex(pattern);
 
             return regex.IsMatch(name);
+        }
+
+        public static bool IsValidPhoneNumber(string phoneNumber)
+        {
+            // Validate the phone number format based on your specific requirements
+            // For example, you might want to check if it contains only digits and has a specific length
+
+            if (string.IsNullOrEmpty(phoneNumber))
+            {
+                return false;
+            }
+
+            foreach (char digit in phoneNumber)
+            {
+                if (!char.IsDigit(digit))
+                {
+                    return false;
+                }
+            }
+
+            // Add more conditions as needed
+            // For example, you can check if it has a specific length
+
+            return true;
         }
     }
 }

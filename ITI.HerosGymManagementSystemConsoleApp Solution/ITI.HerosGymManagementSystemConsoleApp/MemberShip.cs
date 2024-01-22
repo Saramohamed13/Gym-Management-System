@@ -56,7 +56,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         }
         public static void GetAllMemberShips(SqlConnection connection, int UserId)
         {
-            Console.Clear();
+           // Console.Clear();
             // Dispaly all info about all memberships
             string query = "select * from GetAllMemberShipsData";
 

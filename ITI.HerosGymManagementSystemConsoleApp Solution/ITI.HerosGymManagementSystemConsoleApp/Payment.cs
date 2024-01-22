@@ -15,8 +15,8 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         #region Fields
         public int Id { get; set; }
         public decimal? Amount { get; set; }
-        public string? Date { get; set; }
-        public string? Time { get; set; }
+        public DateTime? Date { get; set; }
+        public TimeSpan? Time { get; set; }
         public int? User_Id { get; set; }
         public int? Member_Id { get; set; }
       
@@ -61,7 +61,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         {
             try
             {
-                string query = "INSERT INTO Payments (Amount, Date, Time, User_Id, Member_Id, IsDeleted) " +
+                string query = "INSERT INTO Payments (Amount, Date, Time, User_Id, Member_Id) " +
                                "VALUES (@Amount, @Date, @Time, @User_Id, @Member_Id)";
 
                 SqlCommand command = new SqlCommand(query, connection);
