@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cw6HHL9OB78J2scjg1eo9tZwSFXJeIwvCpjRLZtN2l5iQX996a02WGZ6HonuGIMF56OJnXL7WoF0AUD0aBNVJw==",
+  "dgSpecHash": "Wl8SQSLlkclBtHWA2LcSAKg+d8gga2bRhovGAuaC3pnI2cS6sQu4BcHm5q/Y9oz1mEDSZgiRwvSTLoxasjQT2Q==",
   "success": true,
-  "projectFilePath": "H:\\final\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
+  "projectFilePath": "H:\\test\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\saraz\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\saraz\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

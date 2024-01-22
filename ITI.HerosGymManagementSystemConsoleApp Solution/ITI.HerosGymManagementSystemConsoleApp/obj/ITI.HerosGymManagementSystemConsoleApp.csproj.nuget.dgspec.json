@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\final\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj": {}
+    "H:\\test\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj": {}
   },
   "projects": {
-    "H:\\final\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj": {
+    "H:\\test\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\final\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
+        "projectUniqueName": "H:\\test\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
         "projectName": "ITI.HerosGymManagementSystemConsoleApp",
-        "projectPath": "H:\\final\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
+        "projectPath": "H:\\test\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\ITI.HerosGymManagementSystemConsoleApp.csproj",
         "packagesPath": "C:\\Users\\saraz\\.nuget\\packages\\",
-        "outputPath": "H:\\final\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\obj\\",
+        "outputPath": "H:\\test\\Gym-Management-System\\ITI.HerosGymManagementSystemConsoleApp Solution\\ITI.HerosGymManagementSystemConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\saraz\\AppData\\Roaming\\NuGet\\NuGet.Config",

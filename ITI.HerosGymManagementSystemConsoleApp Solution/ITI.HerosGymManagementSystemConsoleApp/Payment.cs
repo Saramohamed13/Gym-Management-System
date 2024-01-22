@@ -86,7 +86,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             {
                 Console.WriteLine($"Error: {e.Message}");
             }
-            ShowUserMenu();
+         
         }
 
         public void PrintDetails(Payment newPayment)

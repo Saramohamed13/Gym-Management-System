@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ITI.HerosGymManagementSystemConsoleApp
-build_property.ProjectDir = H:\final\Gym-Management-System\ITI.HerosGymManagementSystemConsoleApp Solution\ITI.HerosGymManagementSystemConsoleApp\
+build_property.ProjectDir = H:\test\Gym-Management-System\ITI.HerosGymManagementSystemConsoleApp Solution\ITI.HerosGymManagementSystemConsoleApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

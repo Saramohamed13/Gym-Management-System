@@ -1,9 +1,6 @@
 ﻿using System.Data.SqlClient;
 namespace ITI.HerosGymManagementSystemConsoleApp
 {
-
-
-
     public class Members
     {
         SqlConnection connection;
@@ -84,7 +81,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         public void InsertMemberFromUserInput(int Flag)
         {
             Console.WriteLine("Enter the  vaild phone number to confirm whether the member exists or not  ");
-            string phone = Console.ReadLine();
+            string? phone = Console.ReadLine();
             while (!Helper.IsValidPhoneNumber(phone))
             {
                 Console.WriteLine("Enter the  vaild phone number to confirm whether the member exists or not  ");
@@ -101,7 +98,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 Console.WriteLine("this member is  not exists before");
                 return;
             }
-            string? name="";
+            string? name;
             string? email;
             Console.WriteLine("Enter Member Details:");
 
@@ -162,7 +159,6 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             }
             InsertMember(name, email, age, gender, UserId, membershipId, programId, phone, startDate, endDate);
         }
-
         public void InsertMember(string name, string email, int age, char gender, int userId, int membershipId, int programId, string phone, DateTime startDate, DateTime endDate)
         {
             try
@@ -218,13 +214,12 @@ namespace ITI.HerosGymManagementSystemConsoleApp
             }
 
         }
-    
         public void CalcPayment(DateTime startDate, DateTime endDate, int programId,int memberId)
         {
-           // 1 - get the number of monthes
+          
             int numberOfMonths = ((endDate.Year - startDate.Year) * 12) + endDate.Month - startDate.Month;
 
-            // 2- get salary of program
+         
             string query = "SELECT Salary FROM Programs WHERE Id = @ProgramId";
             decimal salary = 0;
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -248,7 +243,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         public void UserInputsForProgram()
         {
             int memberId;
-            Console.Write("Enter your programId Id: ");
+            Console.Write("Enter your member Id: ");
             while (!int.TryParse(Console.ReadLine(), out memberId) || memberId <= 0)
             {
                 Console.WriteLine("Invalid memberId Id. Please enter a valid positive integer.");
@@ -285,19 +280,25 @@ namespace ITI.HerosGymManagementSystemConsoleApp
         }
         public int InsertIntoMemberPrograms(int memberId, int programId, DateTime startDate, DateTime endDate)
         {
-
-          
-            string insertQuery = "INSERT INTO Member_Programs (Member_Id, Program_Id, StartDate, EndDate) " +
-                                 "VALUES (@Member_Id, @Program_Id, @StartDate, @EndDate);";
-
-            using (SqlCommand cmd = new SqlCommand(insertQuery, connection))
+            try
             {
-                cmd.Parameters.AddWithValue("@Member_Id", memberId);
-                cmd.Parameters.AddWithValue("@Program_Id", programId);
-                cmd.Parameters.AddWithValue("@StartDate", startDate);
-                cmd.Parameters.AddWithValue("@EndDate", endDate);
 
-                return cmd.ExecuteNonQuery();
+                string insertQuery = "INSERT INTO Member_Programs (Member_Id, Program_Id, StartDate, EndDate) " +
+                                     "VALUES (@Member_Id, @Program_Id, @StartDate, @EndDate);";
+
+                using (SqlCommand cmd = new SqlCommand(insertQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@Member_Id", memberId);
+                    cmd.Parameters.AddWithValue("@Program_Id", programId);
+                    cmd.Parameters.AddWithValue("@StartDate", startDate);
+                    cmd.Parameters.AddWithValue("@EndDate", endDate);
+
+                    return cmd.ExecuteNonQuery();
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine("Enter vaild id ");
+                return -1;
             }
 
         }
