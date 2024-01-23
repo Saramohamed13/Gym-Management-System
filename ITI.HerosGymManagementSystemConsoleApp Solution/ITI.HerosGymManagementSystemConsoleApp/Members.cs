@@ -34,7 +34,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                 Console.WriteLine("2. Search Member");
                 Console.WriteLine("3. Update Member");
                 Console.WriteLine("4. Add New Member Program");
-                Console.WriteLine("5. Exit");
+                Console.WriteLine("5. Return..");
                 Console.Write("Enter the number of your choice: ");
                 string? choice = Console.ReadLine();
 
@@ -53,6 +53,7 @@ namespace ITI.HerosGymManagementSystemConsoleApp
                         UserInputsForProgram();
                         break;
                     case "5":
+                        Console.Clear();
                         Helper.GetUserTravelOnApp(connection, UserId);
                         break;
                     default:
