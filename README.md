@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the Gym Management System! This console application allows users to manage various aspects of a gym, including members, coaches, memberships, programs, payments, and user accounts. This application interacts with a SQL database to manage previous models, you'll find information on how to use the different features of the application.
+Welcome to the Gym Management System! This console application allows users to manage various aspects of a gym, including members, coaches, memberships, programs, payments, and user accounts. This application interacts with an SQL database to manage previous models, you'll find information on how to use the different features of the application.
 
 ## Technologies Used
 - **Language:** C#
@@ -55,7 +55,7 @@ Some Of User Accounts:
     - Allows the user to update information for a specific coach.
 - *Delete a Coach:*
     - Enables the user to delete a coach from the system.
-- * Get All Coaches:*
+- *Get All Coaches:*
     - Displays a list of all active Coaches.
 
 **Memberships**
